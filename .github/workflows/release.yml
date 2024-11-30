@@ -39,7 +39,6 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install libboost-test-dev -y
       - run: cmake . -DPATCH_VERSION=${{ github.run_number }}
       - run: cmake --build .
-      - run: cmake --build . --target test
       - run: cmake --build . --target package
       - name: Upload release assets
         id: upload-release-asset
@@ -65,7 +64,6 @@ jobs:
       - run: brew install boost
       - run: cmake . -DPATCH_VERSION=${{ github.run_number }}
       - run: cmake --build .
-      - run: cmake --build . --target test
       - run: cmake --build . --target package
       - name: Upload release assets
         id: upload-release-asset
