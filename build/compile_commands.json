@@ -1,0 +1,26 @@
+[
+{
+  "directory": "C:/Programming/Lab3/build",
+  "command": "C:\\msys64\\mingw64\\bin\\c++.exe -g -std=gnu++17 -o CMakeFiles\\ContainerExample.dir\\main.cpp.obj -c C:\\Programming\\Lab3\\main.cpp",
+  "file": "C:\\Programming\\Lab3\\main.cpp",
+  "output": "CMakeFiles\\ContainerExample.dir\\main.cpp.obj"
+},
+{
+  "directory": "C:/Programming/Lab3/build",
+  "command": "C:\\msys64\\mingw64\\bin\\c++.exe -g -std=gnu++17 -o CMakeFiles\\ContainerExample.dir\\ConsistentContainer.cpp.obj -c C:\\Programming\\Lab3\\ConsistentContainer.cpp",
+  "file": "C:\\Programming\\Lab3\\ConsistentContainer.cpp",
+  "output": "CMakeFiles\\ContainerExample.dir\\ConsistentContainer.cpp.obj"
+},
+{
+  "directory": "C:/Programming/Lab3/build",
+  "command": "C:\\msys64\\mingw64\\bin\\c++.exe -g -std=gnu++17 -o CMakeFiles\\ContainerExample.dir\\DoubleLinkedList.cpp.obj -c C:\\Programming\\Lab3\\DoubleLinkedList.cpp",
+  "file": "C:\\Programming\\Lab3\\DoubleLinkedList.cpp",
+  "output": "CMakeFiles\\ContainerExample.dir\\DoubleLinkedList.cpp.obj"
+},
+{
+  "directory": "C:/Programming/Lab3/build",
+  "command": "C:\\msys64\\mingw64\\bin\\c++.exe -g -std=gnu++17 -o CMakeFiles\\ContainerExample.dir\\SinglyLinkedList.cpp.obj -c C:\\Programming\\Lab3\\SinglyLinkedList.cpp",
+  "file": "C:\\Programming\\Lab3\\SinglyLinkedList.cpp",
+  "output": "CMakeFiles\\ContainerExample.dir\\SinglyLinkedList.cpp.obj"
+}
+]

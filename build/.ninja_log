@@ -1,0 +1,6 @@
+# ninja log v6
+21	445	7535416015550532	CMakeFiles/ContainerExample.dir/main.cpp.obj	cb261862e53383bd
+20	369	7535418427414538	CMakeFiles/ContainerExample.dir/DoubleLinkedList.cpp.obj	24b645da6fc948a8
+33	464	7535416015657829	CMakeFiles/ContainerExample.dir/SinglyLinkedList.cpp.obj	cd33622f3092381
+40	683	7546010372809954	CMakeFiles/ContainerExample.dir/ConsistentContainer.cpp.obj	861acf7c6391f498
+683	963	7546010379232811	ContainerExample.exe	bee607f4f52bd2a0
