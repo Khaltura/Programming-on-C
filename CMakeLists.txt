@@ -25,3 +25,17 @@ set(HEADERS
 
 # Создаем исполняемый файл
 add_executable(ContainerExample ${SOURCES} ${HEADERS})
+
+if (${CMAKE_SYSTEM} MATCHES "Linux")
+    set(CPACK_GENERATOR DEB)
+elseif (${CMAKE_SYSTEM} MATCHES "Darwin")
+    set(CPACK_GENERATOR ZIP)
+endif()
+
+set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
+set(CPACK_PACKAGE_VERSION_MINOR "${PROJECT_VERSION_MINOR}")
+set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
+
+set(CPACK_PACKAGE_CONTACT example@example.com)
+
+include(CPack)
