@@ -1,0 +1,118 @@
+name: 'C++ CI'
+
+on:
+  push:
+    branches:
+      - main
+      - feature/github_actions
+
+jobs:
+  build_ubuntu:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libsfml-dev cmake build-essential
+
+      - name: List Files
+        run: |
+          ls -R
+
+      - name: Configure CMake
+        run: |
+          cmake -S. -B build -DPATCH_VERSION=${{ github.run_number }}
+
+      - name: Build Project
+        run: cmake --build build
+
+      - name: Package Project
+        run: |
+          cmake --build build --target package
+
+      - name: List Files in Build Directory
+        run: |
+          ls -R build
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ github.run_number }}
+          release_name: Release ${{ github.run_number }} (Ubuntu)
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        id: upload-release-asset-ubuntu
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./build/physics-0.0.${{ github.run_number }}-Linux.deb     
+          asset_name: physics-0.0.${{ github.run_number }}-Linux.deb
+          asset_content_type: application/vnd.debian.binary-package
+          allowUpdates: true
+
+  build_windows:
+    runs-on: windows-latest
+    permissions: write-all
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+
+      # Установка SFML
+      - name: Install SFML
+        id: sfml
+        uses: oprypin/install-sfml@v1
+        with:
+          sfml: 2.6.1  # Укажите нужную версию SFML
+          config: Release
+
+      - name: Configure CMake
+        run: |
+          cmake . -DPATCH_VERSION=${{ github.run_number }} -DSFML_DIR="${{ steps.sfml.outputs.path }}"
+
+      - name: Build project
+        run: cmake --build .
+
+      - name: Move Resources to Build Directory
+        run: |
+          if not exist build mkdir build
+          xcopy /s resources build\
+        shell: cmd
+        
+      - name: Package Project
+        run: |
+          cmake --build . --target package
+
+      - name: Create Release (windows)
+        id: create_release_windows
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: windows${{ github.run_number }}
+          release_name: Release ${{ github.run_number }} (windows)
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset (windows)
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release_windows.outputs.upload_url }}
+          asset_path: ./physics-0.0.${{ github.run_number }}-win64.zip  # Убедитесь, что этот путь правильный
+          asset_name: physics-0.0.${{ github.run_number }}-win64.zip
+          asset_content_type: application/zip
