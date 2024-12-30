@@ -1,0 +1,3 @@
+C:/Programming/pr7/build/CMakeFiles/finder.dir
+C:/Programming/pr7/build/CMakeFiles/edit_cache.dir
+C:/Programming/pr7/build/CMakeFiles/rebuild_cache.dir
